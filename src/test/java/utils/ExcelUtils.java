@@ -25,7 +25,11 @@ public class ExcelUtils {
 
             for(int i=1; i<rows; i++){
                 for(int j=0; j<cols; j++){
-                    data[i-1][j] = sheet.getRow(i).getCell(j).toString();
+                	if(sheet.getRow(i).getCell(j).getCellType().toString().equals("NUMERIC")){
+                	    data[i-1][j] = String.valueOf((int) sheet.getRow(i).getCell(j).getNumericCellValue());
+                	} else {
+                	    data[i-1][j] = sheet.getRow(i).getCell(j).toString();
+                	}
                 }
             }
 
